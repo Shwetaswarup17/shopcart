@@ -1,4 +1,4 @@
-# Shopping_Cart__REST_API
+# Shopping Cart REST API
 A repository containing example of REST API in python with  flask  and  mongoDB, for CRUD operations on a cart.
 
 In this repository, I will  explain my work on creating REST API in python with the help of flask, MongoDB to perform CRUD operations on shopping cart.
