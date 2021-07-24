@@ -3,11 +3,11 @@ A repository containing example of REST API in python with  flask  and  mongoDB,
 
 In this repository, I will  explain my work on creating REST API in python with the help of flask, MongoDB to perform CRUD operations on shopping cart.
 
-# Problem Statement : 
+# Problem Statement
 To create a shopping cart REST API(Use Python/Mongodb) that handles CRUD operations for a specific user like create cart, get items, add items and remove items.
 
-# Solution :
-## Tools  Required:
+# Solution
+## Tools  Required
 - MongoDB : To create and maintain database
 - Postman App : To make requests to API from client side
 - Python(3.9.6) : To create the  API
@@ -101,14 +101,11 @@ except:
 @app.route("/carts", methods=["POST"])
 def create_cart():
     try:
-        #item = {"name":"A", "price":"20"}
         item = {"name":request.form["name"],
                 "price":request.form["price"],
                 "quantity":request.form["quantity"]}
         dbResponse = db.carts.insert_one(item)
         print(dbResponse.inserted_id)
-        #for attr in dir(dbResponse):
-        #    print(attr)
         return Response(
             response=json.dumps(
                 {"message":"item added to cart",
@@ -154,8 +151,6 @@ def update_item_name(id):
             {"_id":ObjectId(id)},
             {"$set":{"name":request.form["name"]}}
         )
-        #for attr in dir(dbResponse):
-        #    print(f"*******{attr}************")
         if (dbResponse.modified_count > 0):
             return Response(
                 response=json.dumps({"message":"Item name updated"}),
@@ -187,8 +182,6 @@ def update_item_price(id):
             {"_id":ObjectId(id)},
             {"$set":{"price":request.form["price"]}}
         )
-        #for attr in dir(dbResponse):
-        #    print(f"*******{attr}************")
         if (dbResponse.modified_count > 0):
             return Response(
                 response=json.dumps({"message":"Item price updated"}),
@@ -220,8 +213,6 @@ def update_item_quantity(id):
             {"_id":ObjectId(id)},
             {"$set":{"quantity":request.form["quantity"]}}
         )
-        #for attr in dir(dbResponse):
-        #    print(f"*******{attr}************")
         if (dbResponse.modified_count > 0):
             return Response(
                 response=json.dumps({"message":"Item quantity updated"}),
@@ -252,8 +243,6 @@ def delete_item(id):
         dbResponse = db.carts.delete_one(
             {"_id":ObjectId(id)}
         )
-        #for attr in dir(dbResponse):
-        #    print(attr)
         if (dbResponse.deleted_count > 0):
             return Response(
                 response=json.dumps(
